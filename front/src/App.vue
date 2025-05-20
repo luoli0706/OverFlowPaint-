@@ -137,7 +137,7 @@ const manualSendBoardToServer = async () => {
       grid.value = JSON.parse(JSON.stringify(response.data))
       boardChanged.value = false
       cn.value++
-      alert('发送成功！')
+     /*alert('发送成功！')*/
     }
   } catch (error) {
     console.error('发送失败:', error)
