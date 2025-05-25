@@ -3,23 +3,29 @@
     <SwitchView :components="[
       { name: 'RandomChess', component: RandomChess },
       { name: 'CustomChess', component: CustomChess },
-      { name: 'LevelChess', component: LevelChess }
+      { name: 'LevelChess', component: LevelChess },
+      { name: 'PlayCustom', component: PlayCustom }
     ]" @switch-component="handleSwitchComponent" />
     <component :is="currentComponent" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import SwitchView from './SwitchView.vue';
 import RandomChess from './RandomChess.vue';
 import CustomChess from './CustomChess.vue';
 import LevelChess from './LevelChess.vue';
+import PlayCustom from './PlayCustom.vue';
 
 const currentComponent = ref(null);
 
 const handleSwitchComponent = (comp) => {
-  currentComponent.value = comp.component;
+  if (comp) {
+    currentComponent.value = comp.component;
+  } else {
+    currentComponent.value = null;
+  }
 };
 </script>
 

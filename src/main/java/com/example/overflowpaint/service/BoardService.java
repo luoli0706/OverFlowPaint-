@@ -77,4 +77,13 @@ public class BoardService {
         }
         return board;
     }
+    // 新增方法：清空 Board 表记录
+    public void clearBoardTable() {
+        try {
+            boardRepository.deleteAll();
+            logger.info("数据库表 Board 的记录已清空");
+        } catch (Exception e) {
+            logger.error("清空数据库表 Board 的记录时出错: ", e);
+        }
+    }
 }
