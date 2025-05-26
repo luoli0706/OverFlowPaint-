@@ -9,7 +9,7 @@
     <component :is="currentComponent" />
   </div>
 </template>
-
+<!--主页面入口，存放四个核心模式的页面组件以及入口管理的组件-->
 <script setup>
 import {ref} from 'vue';
 import SwitchView from './SwitchView.vue';

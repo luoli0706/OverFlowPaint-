@@ -5,6 +5,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
+/*TODO：
+ * 按照华为规范进行控制层的封装，待办
+ * */
 public class BaseResponse<T> {
     private int code;
     private String message;

@@ -1,8 +1,15 @@
 package com.example.overflowpaint.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+* 封装棋盘数据
+* */
+@Getter
+@Setter
 public class BoardRequestDto {
     private ArrayList<List<Integer>> board;
     private int x;
@@ -10,7 +17,7 @@ public class BoardRequestDto {
     private int oldColor;
     private int newColor;
 
-    // Getters and Setters
+  /*  用Getters and Setters代替以下内容
     public ArrayList<List<Integer>> getBoard() {
         return board;
     }
@@ -49,5 +56,5 @@ public class BoardRequestDto {
 
     public void setNewColor(int newColor) {
         this.newColor = newColor;
-    }
+    }*/
 }

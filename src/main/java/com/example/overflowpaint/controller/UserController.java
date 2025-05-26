@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
+* 测试数据库连接用，与项目并无关联
+* */
 @RestController
 @RequestMapping("/users")
 public class UserController {

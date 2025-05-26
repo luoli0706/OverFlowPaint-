@@ -16,7 +16,7 @@
     </div>
   </div>
 </template>
-
+<!--视图切换组件，存放四个模式的组件入口，以及相互之间的通信-->
 <script setup>
 import {ref, onMounted, onUnmounted, defineEmits, defineProps, computed} from 'vue';
 

@@ -24,12 +24,6 @@
 <script setup>
 import {  computed, defineProps, defineEmits } from 'vue';
 
-// 移除错误的导入，StepCounter不需要导入其他组件
-// 之前的错误导入：
-// import ChessBoard from './components/ChessBoard.vue'
-// import Button_CMYK from './components/Buttons_CMYK.vue'
-// 等...
-
 // 定义接收的props
 const props = defineProps({
   steps: {
@@ -67,4 +61,5 @@ input {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 </style>

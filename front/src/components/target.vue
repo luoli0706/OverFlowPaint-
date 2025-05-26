@@ -37,11 +37,7 @@ const refresh = () => {
 
 // 接收事件示例（使用自定义事件总线或props）
 onMounted(() => {
-  // 示例：通过$parent访问父组件事件（实际项目建议使用Pinia或事件总线）
-  const parent = defineExpose({
-    initialize,
-    refresh
-  });
+
 });
 </script>
 

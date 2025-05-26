@@ -10,14 +10,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
+/*
+* 用于棋盘数据的逻辑处理
+* */
 @Service
 public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
+    //日志，便于调试问题所在
     private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
-
+//核心方法，将棋盘数据拷贝至数据库，并执行四连通区域填充
     @Transactional
     public int[][] processBoard(int[][] board, int x, int y, int oldColor, int newColor) {
         // 保存棋盘状态到数据库
@@ -37,10 +40,11 @@ public class BoardService {
 
         return processedBoard;
     }
-
+    //四连通区域填充算法实现
     private int[][] floodFill(int[][] board, int x, int y, int oldColor, int newColor) {
         int rows = board.length;
-        int cols = board[0].length;
+        //特别校验，防止越界
+        int cols = (rows ==0)?0:board[0].length;
 
         // 检查起始坐标是否合法
         if (y < 0 || y >= rows || x < 0 || x >= cols || board[y][x] != oldColor) {

@@ -10,6 +10,9 @@ import java.util.Arrays;
 
 @Data
 @Entity
+/*
+实体类，用于将棋盘数据同步至数据库
+* */
 public class Board {
 
     @Id
@@ -17,7 +20,7 @@ public class Board {
     private Long id;
 
     private String boardState;
-
+//设置棋盘状态，即将反序列化后的二维数组序列化成JSON
     public void setBoardState(int[][] board) {
         StringBuilder sb = new StringBuilder();
         for (int[] row : board) {
@@ -30,7 +33,7 @@ public class Board {
         sb.deleteCharAt(sb.length() - 1);
         this.boardState = sb.toString();
     }
-
+//获取棋盘状态，将数据库中的JSON反序列化为Java二维数组以便于逻辑运算
     public int[][] getBoardState() {
         String[] rows = boardState.split(";");
         int[][] board = new int[rows.length][];
