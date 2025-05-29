@@ -59,9 +59,12 @@ const handleSwitch = (comp) => {
   if (comp.name === 'RandomChess') {
     currentImage.value = require('../public/Random.png');
   } else if (comp.name === 'LevelChess') {
-    currentImage.value = require('../public/Level.png');
+    currentImage.value = require('../public/Ready_1.png');
   } else if (comp.name === 'CustomChess') {
-    currentImage.value = require('../public/Custom.png');
+    currentImage.value = require('../public/Ready_9.png');
+  }
+  else{
+    currentImage.value = require('../public/PlayCustom.png')
   }
 };
 // 根据当前图片路径返回不同的类名

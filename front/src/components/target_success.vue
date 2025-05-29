@@ -9,7 +9,7 @@ const colorMap = {
   0: { english: "Cyan", chinese: "青色" },
   1: { english: "Magenta", chinese: "品红" },
   2: { english: "Yellow", chinese: "黄色" },
-  3: { english: "Black", chinese: "黑色" }
+  3: { english: "Key Plate", chinese: "黑色" }
 };
 
 // 计算显示文本
