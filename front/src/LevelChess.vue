@@ -2,7 +2,8 @@
   <div class="level-chess">
     <!-- 关卡模式标题 -->
     <h1 class="text-3xl font-bold text-center mb-6">关卡模式</h1>
-
+    <!-- 新增 target_success 组件 -->
+    <target_success ref="targetSuccessRef" />
     <!-- 主内容区：左侧关卡选择器，右侧游戏区域 -->
     <div class="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto">
       <!-- 关卡选择组件 -->
@@ -99,6 +100,7 @@ import LevelSelector from './components_2/LevelSelector.vue';
 import { levels } from './components_2/levels.js';
 
 import axios from 'axios';
+import Target_success from "./components/target_success.vue";
 
 // API配置
 axios.defaults.baseURL = 'http://localhost:8081';
@@ -113,6 +115,7 @@ const boardChanged = ref(false); // 棋盘是否有变化的标志
 const steps = ref(0); // 步数计数器
 const COLOR_NAMES = ['Cyan', 'Magenta', 'Yellow', 'Black']; // 颜色名称映射
 const initSeed = ref(null); // 随机数种子（用于重置功能）
+const targetSuccessRef = ref(null);
 
 // 处理关卡选择：初始化关卡数据和游戏状态
 const handleLevelSelected = (levelGrid, index) => {
@@ -121,6 +124,7 @@ const handleLevelSelected = (levelGrid, index) => {
   steps.value = 0; // 重置步数
   lastClickedCell.value = null; // 清除最后点击信息
   boardChanged.value = false; // 重置棋盘变化标志
+  targetSuccessRef.value.target_color=(Date.now() * 3 + 2) % 4;
 };
 
 // 处理颜色选择：更新选中的颜色并标记棋盘已更改
@@ -170,7 +174,7 @@ const isBoardUniform = computed(() => {
   if (!currentLevel.value || currentLevel.value.length === 0) return false;
   const firstColor = currentLevel.value[0][0];
   // 检查所有单元格是否与第一个单元格颜色相同
-  return currentLevel.value.every(row => row.every(cell => cell === firstColor));
+  return currentLevel.value.every(row => row.every(cell => cell === firstColor)) && firstColor===targetSuccessRef.value.target_color;
 });
 
 // 获取颜色名称：根据颜色索引返回对应的颜色名称

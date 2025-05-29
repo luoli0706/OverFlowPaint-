@@ -5,6 +5,9 @@
       <!-- 游戏标题 -->
       <h1 class="title text-3xl font-bold text-center text-indigo-800 mb-8 mt-4">CMYK棋盘</h1>
 
+      <!-- 新增 target_success 组件 -->
+      <target_success ref="targetSuccessRef" />
+
       <!-- 游戏内容区：左侧棋盘，右侧控制面板 -->
       <div class="game-wrapper">
         <!-- 棋盘容器 -->
@@ -86,6 +89,8 @@ import StepCounter from './components/StepCounter.vue';
 import VictoryModal from './components/VictoryModal.vue';
 import Exit from './components_2/ExitButton.vue';
 import axios from 'axios';
+// 引入 target_success 组件
+import target_success from './components/target_success.vue';
 
 // 游戏状态管理
 const cn = ref(0); // 步数计数器
@@ -98,6 +103,9 @@ const lastClickedCell = ref(null); // 最后点击的单元格信息
 const boardChanged = ref(false); // 棋盘是否有变化
 const COLOR_NAMES = ['Cyan', 'Magenta', 'Yellow', 'Black']; // 颜色名称数组
 const initSeed = ref(null); // 随机数种子，用于生成初始棋盘
+
+// 新增 targetSuccessRef 引用
+const targetSuccessRef = ref(null);
 
 // 初始化棋盘：使用种子生成随机棋盘
 const initGrid = () => {
@@ -115,6 +123,11 @@ const initGrid = () => {
     newGrid.push(row);
   }
   grid.value = newGrid;
+  targetSuccessRef.value.target_color=(Date.now() * 3 + 2) % 4;
+  // 触发 target_success 刷新
+  if (targetSuccessRef.value) {
+    targetSuccessRef.value.refresh();
+  }
 };
 
 // 基于种子的伪随机数生成器
@@ -170,8 +183,10 @@ const manualSendBoardToServer = async () => {
 const isBoardUniform = computed(() => {
   if (!grid.value || grid.value.length === 0) return false;
   const firstColor = grid.value[0][0];
-  // 检查所有单元格是否与第一个单元格颜色相同
-  return grid.value.every(row => row.every(cell => cell === firstColor));
+  // 检查所有单元格是否与第一个单元格颜色相同，并且与目标颜色相同
+  console.log('FirstColor.value:',firstColor);
+  console.log('Target_color:',targetSuccessRef.value.target_color);
+  return grid.value.every(row => row.every(cell => cell === firstColor )) && firstColor===targetSuccessRef.value.target_color;
 });
 
 // 处理游戏关闭：显示提示信息
@@ -188,6 +203,10 @@ const handleResetBoard = (newGrid) => {
   grid.value = newGrid;
   cn.value = 0;
   lastClickedCell.value = null;
+  // 触发 target_success 刷新
+  if (targetSuccessRef.value) {
+    targetSuccessRef.value.refresh();
+  }
 };
 
 // 处理退出游戏：刷新页面返回到初始状态
@@ -197,7 +216,9 @@ const handleExit = () => {
 };
 
 // 组件挂载时初始化棋盘
-onMounted(initGrid);
+onMounted(() => {
+  initGrid();
+});
 </script>
 
 <style scoped>

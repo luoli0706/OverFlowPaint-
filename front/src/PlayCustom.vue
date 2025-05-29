@@ -3,7 +3,7 @@
     <div class="game-container max-w-7xl mx-auto bg-red rounded-3xl shadow-2xl overflow-hidden">
       <!-- 顶部标题 -->
       <h1 class="title text-3xl font-bold text-center text-indigo-800 mb-8 mt-4">CMYK棋盘</h1>
-
+     <target_success ref="targetSuccessRef"/>
       <!-- 主内容区 -->
       <div class="game-wrapper">
         <div class="board-container">
@@ -76,8 +76,10 @@ import StepCounter from './components/StepCounter.vue';
 import VictoryModal from './components/VictoryModal.vue';
 import Exit from './components_2/ExitButton.vue';
 import axios from 'axios';
+import Target_success from "@/components/target_success.vue";
 
 const emits = defineEmits(['switch-component']);
+const targetSuccessRef = ref(null);
 
 const cn = ref(0);
 axios.defaults.baseURL = 'http://localhost:8081';
@@ -94,6 +96,10 @@ onMounted(() => {
   const customBoard = localStorage.getItem('customBoard');
   if (customBoard) {
     grid.value = JSON.parse(customBoard);
+  }
+  const targetColor = localStorage.getItem('targetColor');
+  if (targetColor) {
+    targetSuccessRef.value.target_color = parseInt(targetColor); // 确保转换为数字类型
   }
 });
 
@@ -138,7 +144,8 @@ const manualSendBoardToServer = async () => {
 const isBoardUniform = computed(() => {
   if (!grid.value || grid.value.length === 0) return false;
   const firstColor = grid.value[0][0];
-  return grid.value.every(row => row.every(cell => cell === firstColor));
+  console.log('target:',targetSuccessRef.value.target_color);
+  return grid.value.every(row => row.every(cell => cell === firstColor))&&firstColor===targetSuccessRef.value.target_color;
 });
 
 const handleCloseGame = () => alert('游戏已退出');

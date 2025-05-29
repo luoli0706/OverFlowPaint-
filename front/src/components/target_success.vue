@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, defineExpose } from "vue";
 
 // 初始化为null，等待初始化信号
 const target_color = ref(null);
@@ -37,14 +37,20 @@ const refresh = () => {
 
 // 接收事件示例（使用自定义事件总线或props）
 onMounted(() => {
+  initialize();
+});
 
+// 暴露方法给父组件
+defineExpose({
+  refresh,
+  initialize,
+  target_color
 });
 </script>
 
 <template>
   <div>
     <input type="text" :value="displayText" readonly/>
-
   </div>
 </template>
 
