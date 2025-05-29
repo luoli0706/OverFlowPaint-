@@ -37,7 +37,7 @@ import { ref, defineEmits } from 'vue';
 import ChessBoard from './ChessBoard.vue';
 import Button_CMYK from './Buttons_CMYK.vue';
 
-const emits = defineEmits(['go-to-play-custom']);
+const emits = defineEmits(['go-to-play-custom'],['target_to_play']);
 
 // 初始化 10*8 的棋盘
 const grid = ref([
@@ -67,6 +67,7 @@ const recordBoard = () => {
   const boardJson = JSON.stringify(grid.value);
   console.log('Recorded board JSON:', boardJson);
   localStorage.setItem('customBoard', boardJson);
+  emits('target_to_play');
 };
 
 const goToPlayCustom = () => {

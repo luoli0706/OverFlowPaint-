@@ -24,7 +24,7 @@ const colors = [
   { name: 'Cyan', value: 'cyan' },
   { name: 'Magenta', value: 'magenta' },
   { name: 'Yellow', value: 'yellow' },
-  { name: 'Black', value: 'black' }
+  { name: 'Key Plate', value: 'black' }
 ]
 
 // 存储当前选中的颜色索引
