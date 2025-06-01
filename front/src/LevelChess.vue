@@ -108,7 +108,7 @@ axios.defaults.timeout = 5000;
 
 // 游戏状态管理
 const currentLevel = ref(null); // 当前选中的关卡数据
-const currentLevelIndex = ref(-1); // 当前关卡索引
+let currentLevelIndex = ref(-1); // 当前关卡索引
 const selectedColor = ref(null); // 当前选中的颜色
 const lastClickedCell = ref(null); // 最后点击的单元格信息
 const boardChanged = ref(false); // 棋盘是否有变化的标志
@@ -119,6 +119,7 @@ const targetSuccessRef = ref(null);
 
 // 处理关卡选择：初始化关卡数据和游戏状态
 const handleLevelSelected = (levelGrid, index) => {
+  //console.log('index:value:',index);
   currentLevel.value = JSON.parse(JSON.stringify(levelGrid)); // 深拷贝关卡数据
   currentLevelIndex.value = index;
   steps.value = 0; // 重置步数
@@ -190,7 +191,9 @@ const handleCloseGame = () => {
 
 // 处理下一关：加载下一个关卡数据
 const handleNextLevel = () => {
-  if (currentLevelIndex.value < 5) {
+  console.log('currentLevelIndex value:',currentLevelIndex.value);
+  console.log('level.value.length-1 value :',levels.value.length-1);
+  if (currentLevelIndex.value < levels.value.length - 1) {
     // 加载下一关
     handleLevelSelected(levels.value[currentLevelIndex.value + 1], currentLevelIndex.value + 1);
   } else {
@@ -228,28 +231,36 @@ const handleExit = () => {
 .controls-container {
   margin-top: 2rem;
 }
-.stats-container{
+
+.stats-container {
   background-color: #6c79b8;
 }
+
 .bg-gray-50 {
   background-color: #f9fafb;
 }
-.color-picker{
+
+.color-picker {
   background-color: #6c79b8;
 }
+
 .text-sm {
   font-size: 0.875rem;
 }
-.mt-4{
+
+.mt-4 {
   background-color: #6c79b8;
 }
-.action-buttons{
+
+.action-buttons {
   background-color: #6c79b8;
 }
-.text-lg{
+
+.text-lg {
   background-color: #6c79b8;
 }
-.flex{
+
+.flex {
   background-color: #6c79b8;
 }
 </style>

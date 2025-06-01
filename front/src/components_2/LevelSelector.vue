@@ -27,7 +27,7 @@ const selectedLevel = ref(null);
 
 const selectLevel = (index) => {
   selectedLevel.value = index;
-  emits('level-selected', levels.value[index]);
+  emits('level-selected', levels.value[index],index);
 };
 </script>
 
