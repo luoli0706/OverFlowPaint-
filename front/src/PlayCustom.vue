@@ -82,7 +82,7 @@ const emits = defineEmits(['switch-component']);
 
 
 const cn = ref(0);
-axios.defaults.baseURL = 'http://localhost:8081';
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 axios.defaults.timeout = 5000;
 
 const grid = ref([]);

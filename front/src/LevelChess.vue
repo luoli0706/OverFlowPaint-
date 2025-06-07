@@ -103,7 +103,7 @@ import axios from 'axios';
 import Target_success from "./components/target_success.vue";
 
 // API配置
-axios.defaults.baseURL = 'http://localhost:8081';
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 axios.defaults.timeout = 5000;
 
 // 游戏状态管理

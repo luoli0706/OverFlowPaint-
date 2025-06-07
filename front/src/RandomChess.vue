@@ -94,8 +94,8 @@ import target_success from './components/target_success.vue';
 
 // 游戏状态管理
 const cn = ref(0); // 步数计数器
-axios.defaults.baseURL = 'http://localhost:8081'; // 后端API基础URL
-axios.defaults.timeout = 5000; // 请求超时时间
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
+axios.defaults.timeout = 5000;
 
 const grid = ref([]); // 当前棋盘状态
 const selectedColor = ref(null); // 当前选中的颜色
