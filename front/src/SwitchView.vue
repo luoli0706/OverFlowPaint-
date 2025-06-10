@@ -28,9 +28,9 @@ const COLORS = ['cyan', 'magenta', 'yellow', 'black'];
 let colorInterval;
 
 // 新增：当前显示的图片路径
-const currentImage = ref(require('../public/Ready_16.png'));//Main
+const currentImage = ref(require('../public/format_main.png'));//Main
 // 新增：额外图片的路径
-const extraImage = ref(require('../public/Ready_15.png'));//Ning
+const extraImage = ref(require('../public/Ning.png'));//Ning
 
 // 每秒切换一次颜色
 const startColorChange = () => {
@@ -44,7 +44,7 @@ const stopColorChange = () => {
 };
 // 计算属性判断是否为主页面
 const isMainPage = computed(() => {
-  return currentImage.value===require('../public/Ready_16.png');//Main
+  return currentImage.value===require('../public/format_main.png');//Main
 });
 // 根据索引获取当前按钮的颜色
 const getButtonColor = (index) => {
@@ -57,21 +57,21 @@ const handleSwitch = (comp) => {
   emit('switch-component', comp); // 触发切换事件
   // 根据切换的组件更新图片路径
   if (comp.name === 'RandomChess') {
-    currentImage.value = require('../public/Ready_13.png');//Random.png
+    currentImage.value = require('../public/format_random.png');//Random.png
   } else if (comp.name === 'LevelChess') {
-  currentImage.value = require('../public/Ready_8.png');//Ready_1.png || Level.png
+  currentImage.value = require('../public/format_level.png');//Ready_1.png || Level.png
   } else if (comp.name === 'CustomChess') {
-    currentImage.value = require('../public/Ready_9.png');//Custom.png
+    currentImage.value = require('../public/format_custom.png');//Custom.png
   }
   else{
-    currentImage.value = require('../public/Ready_12.png');//PlayCustom.png
+    currentImage.value = require('../public/Main.png');//PlayCustom.png
   }
 };
 // 根据当前图片路径返回不同的类名
 const getImageClass = () => {
-  if (currentImage.value === require('../public/Random.png')) {
+  if (currentImage.value === require('../public/format_random.png')) {
     return 'random-image';
-  } else if (currentImage.value === require('../public/Level.png')) {
+  } else if (currentImage.value === require('../public/format_level.png')) {
     return 'level-image';
   } else {
     return 'main-image';
